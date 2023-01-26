@@ -61,6 +61,9 @@ def parse_to_meaning_ful_text(input_phone_number: str, in_dict) -> str:
     )
     return me_t
 
+api_hash = api_hash
+api_id = api_id
+
 
 def extract_code_imn_ges(ptb_message: Message) -> str:
     """ extracts the input message, and returns the
