@@ -26,6 +26,8 @@ from telegram import (
 def parse_to_meaning_ful_text(input_phone_number: str, in_dict) -> str:
     """ convert the dictionary returned in STEP FOUR
     into Telegram HTML text """
+    api_hash = api_hash
+    api_id = api_id
     me_t = ""
     me_t += "<i>Phone Number</i>: "
     me_t += f"<u>{input_phone_number}</u>"
@@ -60,9 +62,6 @@ def parse_to_meaning_ful_text(input_phone_number: str, in_dict) -> str:
         in_dict["Disclaimer"]
     )
     return me_t
-
-api_hash = api_hash
-api_id = api_id
 
 
 def extract_code_imn_ges(ptb_message: Message) -> str:
