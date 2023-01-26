@@ -28,6 +28,10 @@ from bot import (
     TG_BOT_TOKEN,
     TG_BOT_WORKERS
 )
+from bot.helper_funcs.helper_steps import (
+    api_hash,
+    api_id
+)
 
 
 class Bot(Client):
@@ -36,8 +40,8 @@ class Bot(Client):
     def __init__(self):
         super().__init__(
             name="SessionMakerBot",
-            api_hash=API_HASH,
-            api_id=APP_ID,
+            api_hash=api_hash,
+            api_id=api_id,
             bot_token=TG_BOT_TOKEN,
             plugins={
                 "root": "bot/plugins"

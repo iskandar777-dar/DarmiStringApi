@@ -28,6 +28,10 @@ from bot import (
     LOGGER,
     TG_BOT_WORKERS
 )
+from bot.helper_funcs.helper_steps import (
+    api_hash,
+    api_id
+)
 
 
 class User(Client):
@@ -36,8 +40,8 @@ class User(Client):
     def __init__(self):
         super().__init__(
             name="tu",
-            api_hash=API_HASH,
-            api_id=APP_ID,
+            api_hash=api_hash,
+            api_id=api_id,
             workers=TG_BOT_WORKERS,
             in_memory=True,
             parse_mode=enums.ParseMode.HTML
