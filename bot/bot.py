@@ -21,13 +21,12 @@ from pyrogram import (
     __version__,
     enums
 )
-from bot.config import (
-    TG_BOT_TOKEN
-)
-
-from bot.helper_funcs.helper_steps import (
-    api_id,
-    api_hash
+from bot import (
+    API_HASH,
+    APP_ID,
+    LOGGER,
+    TG_BOT_TOKEN,
+    TG_BOT_WORKERS
 )
 
 
@@ -37,13 +36,13 @@ class Bot(Client):
     def __init__(self):
         super().__init__(
             name="SessionMakerBot",
-            api_hash=api_hash,
-            api_id=api_id,
+            api_hash=API_HASH,
+            api_id=APP_ID,
             bot_token=TG_BOT_TOKEN,
             plugins={
                 "root": "bot/plugins"
             },
-            workers=4,
+            workers=TG_BOT_WORKERS,
             parse_mode=enums.ParseMode.HTML
         )
         self.LOGGER = LOGGER

@@ -22,13 +22,11 @@ from pyrogram import (
     __version__,
     enums
 )
-from bot.config import (
-    LOGGER
-)
-
-from bot.helper_funcs.helper_steps import (
-    api_id,
-    api_hash
+from bot import (
+    API_HASH,
+    APP_ID,
+    LOGGER,
+    TG_BOT_WORKERS
 )
 
 
@@ -38,22 +36,22 @@ class User(Client):
     def __init__(self):
         super().__init__(
             name="tu",
-            api_hash=api_hash,
-            api_id=api_id,
-            workers=4,
+            api_hash=API_HASH,
+            api_id=APP_ID,
+            workers=TG_BOT_WORKERS,
             in_memory=True,
             parse_mode=enums.ParseMode.HTML
         )
         self.LOGGER = LOGGER
 
-    def start(self):
-        super().start()
+    async def start(self):
+        await super().start()
         usr_bot_me = self.me
         self.LOGGER(__name__).info(
             f"@{usr_bot_me.username} based on Pyrogram v{__version__} "
         )
         return (self, usr_bot_me.id)
 
-    def stop(self, *args):
-        super().stop()
+    async def stop(self, *args):
+        await super().stop()
         self.LOGGER(__name__).info("Bot stopped. Bye.")

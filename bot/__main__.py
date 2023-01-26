@@ -35,6 +35,8 @@ from bot.modules.input_phone_number_ import (
 from bot.modules.input_tg_code_ import (
     input_tg_code
 )
+from bot.bot import Bot
+Bot().run()
 
 
 """ Initial Entry Point """
@@ -83,12 +85,6 @@ if Config.WEBHOOK:
     )
 else:
     updater.start_polling()
-
-print(
-    """
-Bot Started: Join @medsupportt (https://tx.me/medsupportt)
-    """
-)
 
 # Run the bot until you press Ctrl-C or the process receives SIGINT,
 # SIGTERM or SIGABRT. This should be used most of the time, since

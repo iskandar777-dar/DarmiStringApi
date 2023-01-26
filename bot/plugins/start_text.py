@@ -22,7 +22,7 @@ from pyrogram import (
 from pyrogram.types import (
     Message
 )
-from bot.config import (
+from bot import (
     AKTIFPERINTAH,
     COMMM_AND_PRE_FIX,
     START_COMMAND,
@@ -40,5 +40,5 @@ async def num_start_message(_, message: Message):
     status_message = await message.reply_text(
         START_OTHER_USERS_TEXT + "\n" + INPUT_PHONE_NUMBER
     )
-    AKTIFPERINTAH[message.chat.id]["STRING"] = status_message
+    AKTIFPERINTAH[message.chat.id]["START"] = status_message
     raise message.stop_propagation()

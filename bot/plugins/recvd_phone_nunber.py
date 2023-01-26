@@ -22,7 +22,7 @@ from pyrogram import (
 from pyrogram.types import (
     Message
 )
-from bot.config import (
+from bot import (
     AKTIFPERINTAH,
     ALREADY_REGISTERED_PHONE,
     CONFIRM_SENT_VIA,
@@ -40,10 +40,10 @@ async def recvd_ph_no_message(_, message: Message):
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
-    status_message = w_s_dict.get("STRING")
+    status_message = w_s_dict.get("START")
     if not status_message:
         return
-    del w_s_dict["STRING"]
+    del w_s_dict["START"]
     status_message = await message.reply_text(
         RECVD_PHONE_NUMBER_DBP
     )
