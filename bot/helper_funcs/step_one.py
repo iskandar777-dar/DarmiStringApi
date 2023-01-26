@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (c) Shrimadhav U K
+# Copyright (c) Darmi
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -15,32 +15,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-""" STEP TWO """
+""" STEP ONE """
 
 import requests
 
 
-def login_step_get_stel_cookie(
-        input_phone_number,
-        tg_random_hash,
-        tg_cloud_password
-):
-    """Logins to my.telegram.org and returns the cookie,
-    or False in case of failure"""
-    request_url = "https://my.telegram.org/auth/login"
+def request_tg_code_get_random_hash(input_phone_number: str) -> str:
+    """ requests Login Code
+    and returns a random_hash
+    which is used in STEP TWO """
+    request_url = "https://my.telegram.org/auth/send_password"
     request_data = {
-        "phone": input_phone_number,
-        "random_hash": tg_random_hash,
-        "password": tg_cloud_password
+        "phone": input_phone_number
     }
     response_c = requests.post(request_url, data=request_data)
-    #
-    re_val = None
-    re_status_id = None
-    if response_c.text == "true":
-        re_val = response_c.headers.get("Set-Cookie")
-        re_status_id = True
-    else:
-        re_val = response_c.text
-        re_status_id = False
-    return re_status_id, re_val
+    json_response = response_c.json()
+    return json_response["random_hash"]
